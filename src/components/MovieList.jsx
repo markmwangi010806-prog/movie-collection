@@ -22,6 +22,7 @@ function MovieList() {
       movie.title.toLowerCase().includes(search.toLowerCase()) ||
       movie.genre.toLowerCase().includes(search.toLowerCase()),
   );
+  const sortedMovies = [...filteredMovies].sort((a, b) => b.year - a.year);
 
   function handleAddMovie(event) {
     event.preventDefault();
@@ -83,7 +84,7 @@ function MovieList() {
 
       {/* Movie collection */}
       <div className="movie-grid">
-        {filteredMovies.map((movie) => (
+        {sortedMovies.map((movie) => (
           <MovieCard
             key={movie.id}
             title={movie.title}
