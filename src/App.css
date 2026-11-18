@@ -165,3 +165,14 @@ h1 {
   font-weight: bold;
 }
 
+.genre-select {
+  padding: 12px;
+  width: 100%;
+  max-width: 300px;
+  margin: 15px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  background-color: white;
+  cursor: pointer;
+}

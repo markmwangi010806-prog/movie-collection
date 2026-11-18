@@ -16,12 +16,18 @@ function MovieList() {
   const [genre, setGenre] = useState("");
   const [year, setYear] = useState("");
   const [search, setSearch] = useState("");
+  const [selectedGenre, setSelectedGenre] = useState("All Genres");
 
-  const filteredMovies = movies.filter(
-    (movie) =>
+  const filteredMovies = movies.filter((movie) => {
+    const matchesSearch =
       movie.title.toLowerCase().includes(search.toLowerCase()) ||
-      movie.genre.toLowerCase().includes(search.toLowerCase()),
-  );
+      movie.genre.toLowerCase().includes(search.toLowerCase());
+
+    const matchesGenre =
+      selectedGenre === "All Genres" || movie.genre === selectedGenre;
+
+    return matchesSearch && matchesGenre;
+  });
   const sortedMovies = [...filteredMovies].sort((a, b) => b.year - a.year);
 
   function handleAddMovie(event) {
@@ -78,6 +84,17 @@ function MovieList() {
         value={search}
         onChange={(event) => setSearch(event.target.value)}
       />
+      <select
+        className="genre-select"
+        value={selectedGenre}
+        onChange={(event) => setSelectedGenre(event.target.value)}
+      >
+        <option value="All Genres">All Genres</option>
+        <option value="Action">Action</option>
+        <option value="Adventure">Adventure</option>
+        <option value="Romance">Romance</option>
+        <option value="Science Fiction">Science Fiction</option>
+      </select>
 
       {/* Empty search message */}
       {filteredMovies.length === 0 && <p>No movies found!</p>}
