@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import MovieCard from "./MovieCard";
 import "../App.css";
@@ -18,8 +17,10 @@ function MovieList() {
   const [year, setYear] = useState("");
   const [search, setSearch] = useState("");
 
-  const filteredMovies = movies.filter((movie) =>
-    movie.title.toLowerCase().includes(search.toLowerCase())
+  const filteredMovies = movies.filter(
+    (movie) =>
+      movie.title.toLowerCase().includes(search.toLowerCase()) ||
+      movie.genre.toLowerCase().includes(search.toLowerCase()),
   );
 
   function handleAddMovie(event) {
@@ -49,7 +50,6 @@ function MovieList() {
 
   return (
     <div className="app-container">
-
       {/* Dashboard header */}
       <div className="dashboard-header">
         <h1>My Movie Collection</h1>
@@ -124,7 +124,6 @@ function MovieList() {
           Add Movie
         </button>
       </form>
-
     </div>
   );
 }
