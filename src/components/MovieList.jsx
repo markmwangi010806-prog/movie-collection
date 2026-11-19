@@ -63,7 +63,7 @@ function MovieList() {
       return;
     }
 
-    // Check for duplicate movie titles
+    // Prevent duplicate movie titles
     const movieExists = movies.some(
       (movie) =>
         movie.title.trim().toLowerCase() === title.trim().toLowerCase()
@@ -112,11 +112,13 @@ function MovieList() {
 
   return (
     <div className="app-container">
+      {/* Dashboard header */}
       <div className="dashboard-header">
         <h1>My Movie Collection</h1>
         <p>Manage and explore your favorite movies.</p>
       </div>
 
+      {/* Movie statistics */}
       <div className="stats-container">
         <div className="stat-card">
           <h3>Total Movies</h3>
@@ -129,16 +131,20 @@ function MovieList() {
         </div>
       </div>
 
+      {/* Search bar */}
       <input
         className="search-input"
         type="text"
         placeholder="Search movies..."
+        aria-label="Search movies by title or genre"
         value={search}
         onChange={(event) => setSearch(event.target.value)}
       />
 
+      {/* Genre filter */}
       <select
         className="genre-select"
+        aria-label="Filter movies by genre"
         value={selectedGenre}
         onChange={(event) => setSelectedGenre(event.target.value)}
       >
@@ -149,8 +155,10 @@ function MovieList() {
         <option value="Science Fiction">Science Fiction</option>
       </select>
 
+      {/* Empty search message */}
       {filteredMovies.length === 0 && <p>No movies found!</p>}
 
+      {/* Movie collection */}
       <div className="movie-grid">
         {sortedMovies.map((movie) => (
           <MovieCard
@@ -163,30 +171,48 @@ function MovieList() {
         ))}
       </div>
 
+      {/* Add movie form */}
       <form className="movie-form" onSubmit={handleAddMovie}>
-        <input
-          className="form-input"
-          type="text"
-          placeholder="Movie title"
-          value={title}
-          onChange={(event) => setTitle(event.target.value)}
-        />
+        <div className="form-group">
+          <label htmlFor="movie-title">Movie Title</label>
+          <input
+            id="movie-title"
+            className="form-input"
+            type="text"
+            placeholder="e.g. Spider-Man"
+            value={title}
+            onChange={(event) => setTitle(event.target.value)}
+            required
+          />
+        </div>
 
-        <input
-          className="form-input"
-          type="text"
-          placeholder="Movie genre"
-          value={genre}
-          onChange={(event) => setGenre(event.target.value)}
-        />
+        <div className="form-group">
+          <label htmlFor="movie-genre">Movie Genre</label>
+          <input
+            id="movie-genre"
+            className="form-input"
+            type="text"
+            placeholder="e.g. Action"
+            value={genre}
+            onChange={(event) => setGenre(event.target.value)}
+            required
+          />
+        </div>
 
-        <input
-          className="form-input"
-          type="number"
-          placeholder="Release year"
-          value={year}
-          onChange={(event) => setYear(event.target.value)}
-        />
+        <div className="form-group">
+          <label htmlFor="movie-year">Release Year</label>
+          <input
+            id="movie-year"
+            className="form-input"
+            type="number"
+            placeholder="e.g. 2021"
+            min="1888"
+            max={new Date().getFullYear()}
+            value={year}
+            onChange={(event) => setYear(event.target.value)}
+            required
+          />
+        </div>
 
         <button className="add-button" type="submit">
           Add Movie

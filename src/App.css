@@ -13,114 +13,6 @@ h1 {
   margin-bottom: 25px;
 }
 
-/* Movie card */
-.movie-card {
-  background-color: white;
-  padding: 20px;
-  border-radius: 12px;
-  margin-bottom: 18px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e2e8f0;
-}
-
-/* Movie title */
-.movie-card h2 {
-  color: #2563eb;
-  margin-bottom: 10px;
-  font-size: 21px;
-}
-
-/* Movie details */
-.movie-card p {
-  color: #64748b;
-  margin-bottom: 8px;
-}
-
-/* Delete button */
-.delete-button {
-  background-color: #dc2626;
-  color: white;
-  border: none;
-  padding: 9px 15px;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.delete-button:hover {
-  background-color: #991b1b;
-}
-
-
-/* Movie grid layout */
-.movie-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-
-/* Responsive layout for tablets */
-@media (max-width: 900px) {
-  .movie-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Responsive layout for phones */
-@media (max-width: 600px) {
-  .movie-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-/* Search bar */
-.search-input {
-  width: 100%;
-  padding: 14px;
-  margin-bottom: 25px;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-  font-size: 16px;
-}
-
-/* Add movie form */
-.movie-form {
-  background: white;
-  padding: 25px;
-  border-radius: 12px;
-  margin-top: 30px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-/* Form inputs */
-.form-input {
-  flex: 1;
-  min-width: 150px;
-  padding: 12px;
-  border: 1px solid #cbd5e1;
-  border-radius: 7px;
-  font-size: 15px;
-}
-
-/* Add button */
-.add-button {
-  background: #2563eb;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 7px;
-  cursor: pointer;
-  font-size: 15px;
-}
-
-.add-button:hover {
-  background: #1d4ed8;
-}
-
-
 /* Dashboard header */
 .dashboard-header {
   margin-bottom: 25px;
@@ -165,6 +57,62 @@ h1 {
   font-weight: bold;
 }
 
+/* Movie grid layout */
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* Movie card */
+.movie-card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 18px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
+}
+
+/* Movie title */
+.movie-card h2 {
+  color: #2563eb;
+  margin-bottom: 10px;
+  font-size: 21px;
+}
+
+/* Movie details */
+.movie-card p {
+  color: #64748b;
+  margin-bottom: 8px;
+}
+
+/* Delete button */
+.delete-button {
+  background-color: #dc2626;
+  color: white;
+  border: none;
+  padding: 9px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.delete-button:hover {
+  background-color: #991b1b;
+}
+
+/* Search bar */
+.search-input {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 25px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+/* Genre filter */
 .genre-select {
   padding: 12px;
   width: 100%;
@@ -177,38 +125,105 @@ h1 {
   cursor: pointer;
 }
 
-/* Movie Details Section */
-.movie-details {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  position: relative;
-  z-index: 10;
-  background-color: white;
-  color: #222;
+/* Add movie form */
+.movie-form {
+  background: white;
   padding: 25px;
-  margin: 25px 0;
-  border: 2px solid #2563eb;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
 }
 
-.movie-details h2 {
-  color: #2563eb;
-  margin-bottom: 15px;
+/* Form groups */
+.form-group {
+  flex: 1;
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.movie-details p {
-  margin: 10px 0;
-  font-size: 16px;
+/* Form labels */
+.form-group label {
+  color: #1e293b;
+  font-size: 14px;
+  font-weight: 600;
 }
 
-.movie-details button {
-  padding: 10px 18px;
-  margin-top: 15px;
-  background-color: #2563eb;
+/* Form inputs */
+.form-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  font-size: 15px;
+}
+
+/* Add button */
+.add-button {
+  background: #2563eb;
   color: white;
   border: none;
-  border-radius: 6px;
+  padding: 12px 20px;
+  border-radius: 7px;
   cursor: pointer;
+  font-size: 15px;
+}
+
+.add-button:hover {
+  background: #1d4ed8;
+}
+
+/* Accessibility: focus indicators */
+.form-input:focus,
+.search-input:focus,
+.genre-select:focus {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+  border-color: #2563eb;
+}
+
+.add-button:focus-visible,
+.delete-button:focus-visible {
+  outline: 3px solid #93c5fd;
+  outline-offset: 3px;
+}
+
+/* Responsive layout for tablets */
+@media (max-width: 900px) {
+  .movie-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Responsive layout for phones */
+@media (max-width: 600px) {
+  .app-container {
+    padding: 20px 15px;
+  }
+
+  .movie-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-container {
+    grid-template-columns: 1fr;
+  }
+
+  .movie-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .form-group {
+    width: 100%;
+  }
+
+  .add-button {
+    width: 100%;
+  }
 }
