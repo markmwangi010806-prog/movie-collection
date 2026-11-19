@@ -63,6 +63,18 @@ function MovieList() {
       return;
     }
 
+    // Check for duplicate movie titles
+    const movieExists = movies.some(
+      (movie) =>
+        movie.title.trim().toLowerCase() === title.trim().toLowerCase()
+    );
+
+    if (movieExists) {
+      alert("This movie already exists in your collection!");
+      return;
+    }
+
+    // Validate release year
     const currentYear = new Date().getFullYear();
     const movieYear = Number(year);
 
@@ -100,13 +112,11 @@ function MovieList() {
 
   return (
     <div className="app-container">
-      {/* Dashboard header */}
       <div className="dashboard-header">
         <h1>My Movie Collection</h1>
         <p>Manage and explore your favorite movies.</p>
       </div>
 
-      {/* Movie statistics */}
       <div className="stats-container">
         <div className="stat-card">
           <h3>Total Movies</h3>
@@ -119,7 +129,6 @@ function MovieList() {
         </div>
       </div>
 
-      {/* Search bar */}
       <input
         className="search-input"
         type="text"
@@ -128,7 +137,6 @@ function MovieList() {
         onChange={(event) => setSearch(event.target.value)}
       />
 
-      {/* Genre filter */}
       <select
         className="genre-select"
         value={selectedGenre}
@@ -141,10 +149,8 @@ function MovieList() {
         <option value="Science Fiction">Science Fiction</option>
       </select>
 
-      {/* Empty search message */}
       {filteredMovies.length === 0 && <p>No movies found!</p>}
 
-      {/* Movie collection */}
       <div className="movie-grid">
         {sortedMovies.map((movie) => (
           <MovieCard
@@ -157,7 +163,6 @@ function MovieList() {
         ))}
       </div>
 
-      {/* Add movie form */}
       <form className="movie-form" onSubmit={handleAddMovie}>
         <input
           className="form-input"
