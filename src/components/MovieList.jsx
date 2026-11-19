@@ -1,22 +1,41 @@
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
 import "../App.css";
 
 function MovieList() {
-  const [movies, setMovies] = useState([
-    { id: 1, title: "Inception", genre: "Science Fiction", year: 2010 },
-    { id: 2, title: "Interstellar", genre: "Adventure", year: 2014 },
-    { id: 3, title: "The Dark Knight", genre: "Action", year: 2008 },
-    { id: 4, title: "Avatar", genre: "Science Fiction", year: 2009 },
-    { id: 5, title: "Titanic", genre: "Romance", year: 1997 },
-    { id: 6, title: "Black Panther", genre: "Action", year: 2018 },
-  ]);
+  // Load saved movies from localStorage
+  const [movies, setMovies] = useState(() => {
+    const savedMovies = localStorage.getItem("movies");
+
+    if (savedMovies) {
+      try {
+        return JSON.parse(savedMovies);
+      } catch (error) {
+        console.error("Could not load saved movies:", error);
+      }
+    }
+
+    return [
+      { id: 1, title: "Inception", genre: "Science Fiction", year: 2010 },
+      { id: 2, title: "Interstellar", genre: "Adventure", year: 2014 },
+      { id: 3, title: "The Dark Knight", genre: "Action", year: 2008 },
+      { id: 4, title: "Avatar", genre: "Science Fiction", year: 2009 },
+      { id: 5, title: "Titanic", genre: "Romance", year: 1997 },
+      { id: 6, title: "Black Panther", genre: "Action", year: 2018 },
+    ];
+  });
 
   const [title, setTitle] = useState("");
   const [genre, setGenre] = useState("");
   const [year, setYear] = useState("");
   const [search, setSearch] = useState("");
   const [selectedGenre, setSelectedGenre] = useState("All Genres");
+
+  // Save movies whenever the collection changes
+  useEffect(() => {
+    localStorage.setItem("movies", JSON.stringify(movies));
+  }, [movies]);
 
   // Search and filter movies
   const filteredMovies = movies.filter((movie) => {
@@ -31,7 +50,9 @@ function MovieList() {
   });
 
   // Sort movies by release year (newest first)
-  const sortedMovies = [...filteredMovies].sort((a, b) => b.year - a.year);
+  const sortedMovies = [...filteredMovies].sort(
+    (a, b) => b.year - a.year
+  );
 
   // Add a new movie
   function handleAddMovie(event) {
@@ -51,7 +72,7 @@ function MovieList() {
       movieYear > currentYear
     ) {
       alert(
-        `Please enter a valid release year between 1888 and ${currentYear}.`,
+        `Please enter a valid release year between 1888 and ${currentYear}.`
       );
       return;
     }
@@ -60,10 +81,10 @@ function MovieList() {
       id: Date.now(),
       title: title.trim(),
       genre: genre.trim(),
-      year: Number(year),
+      year: movieYear,
     };
 
-    setMovies([...movies, newMovie]);
+    setMovies((previousMovies) => [...previousMovies, newMovie]);
 
     setTitle("");
     setGenre("");
@@ -72,7 +93,9 @@ function MovieList() {
 
   // Delete a movie
   function handleDeleteMovie(id) {
-    setMovies(movies.filter((movie) => movie.id !== id));
+    setMovies((previousMovies) =>
+      previousMovies.filter((movie) => movie.id !== id)
+    );
   }
 
   return (
