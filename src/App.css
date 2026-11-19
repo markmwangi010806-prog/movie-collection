@@ -176,3 +176,39 @@ h1 {
   background-color: white;
   cursor: pointer;
 }
+
+/* Movie Details Section */
+.movie-details {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative;
+  z-index: 10;
+  background-color: white;
+  color: #222;
+  padding: 25px;
+  margin: 25px 0;
+  border: 2px solid #2563eb;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.movie-details h2 {
+  color: #2563eb;
+  margin-bottom: 15px;
+}
+
+.movie-details p {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.movie-details button {
+  padding: 10px 18px;
+  margin-top: 15px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}

@@ -18,6 +18,7 @@ function MovieList() {
   const [search, setSearch] = useState("");
   const [selectedGenre, setSelectedGenre] = useState("All Genres");
 
+  // Search and filter movies
   const filteredMovies = movies.filter((movie) => {
     const matchesSearch =
       movie.title.toLowerCase().includes(search.toLowerCase()) ||
@@ -28,8 +29,13 @@ function MovieList() {
 
     return matchesSearch && matchesGenre;
   });
-  const sortedMovies = [...filteredMovies].sort((a, b) => b.year - a.year);
 
+  // Sort movies by release year (newest first)
+  const sortedMovies = [...filteredMovies].sort(
+    (a, b) => b.year - a.year
+  );
+
+  // Add a new movie
   function handleAddMovie(event) {
     event.preventDefault();
 
@@ -46,17 +52,20 @@ function MovieList() {
     };
 
     setMovies([...movies, newMovie]);
+
     setTitle("");
     setGenre("");
     setYear("");
   }
 
+  // Delete a movie
   function handleDeleteMovie(id) {
     setMovies(movies.filter((movie) => movie.id !== id));
   }
 
   return (
     <div className="app-container">
+
       {/* Dashboard header */}
       <div className="dashboard-header">
         <h1>My Movie Collection</h1>
@@ -84,6 +93,8 @@ function MovieList() {
         value={search}
         onChange={(event) => setSearch(event.target.value)}
       />
+
+      {/* Genre filter */}
       <select
         className="genre-select"
         value={selectedGenre}
@@ -112,7 +123,7 @@ function MovieList() {
         ))}
       </div>
 
-      {/* Add movie form - only ONE form */}
+      {/* Add movie form */}
       <form className="movie-form" onSubmit={handleAddMovie}>
         <input
           className="form-input"
@@ -142,6 +153,7 @@ function MovieList() {
           Add Movie
         </button>
       </form>
+
     </div>
   );
 }
