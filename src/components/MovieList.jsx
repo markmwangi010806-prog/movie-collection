@@ -31,9 +31,7 @@ function MovieList() {
   });
 
   // Sort movies by release year (newest first)
-  const sortedMovies = [...filteredMovies].sort(
-    (a, b) => b.year - a.year
-  );
+  const sortedMovies = [...filteredMovies].sort((a, b) => b.year - a.year);
 
   // Add a new movie
   function handleAddMovie(event) {
@@ -41,6 +39,20 @@ function MovieList() {
 
     if (!title.trim() || !genre.trim() || !year) {
       alert("Please fill in all fields!");
+      return;
+    }
+
+    const currentYear = new Date().getFullYear();
+    const movieYear = Number(year);
+
+    if (
+      !Number.isInteger(movieYear) ||
+      movieYear < 1888 ||
+      movieYear > currentYear
+    ) {
+      alert(
+        `Please enter a valid release year between 1888 and ${currentYear}.`,
+      );
       return;
     }
 
@@ -65,7 +77,6 @@ function MovieList() {
 
   return (
     <div className="app-container">
-
       {/* Dashboard header */}
       <div className="dashboard-header">
         <h1>My Movie Collection</h1>
@@ -153,7 +164,6 @@ function MovieList() {
           Add Movie
         </button>
       </form>
-
     </div>
   );
 }
